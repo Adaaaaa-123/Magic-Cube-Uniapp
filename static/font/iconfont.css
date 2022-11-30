@@ -40,9 +40,9 @@
   content: "\e60d";
 }
 
-.icon-clear:before {
+/* .icon-clear:before {
   content: "\e631";
-}
+} */
 
 .icon-message:before {
   content: "\e606";

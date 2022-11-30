@@ -1,11 +1,18 @@
 <template>
-	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
-		<view class="text-area">
-			<button class="commonBtn" type="primary" @click="handleClick('navigateTo')">navigateTo</button><br/>
-			<button class="commonBtn" type="primary" @click="handleClick('redirectTo')">redirectTo</button><br/>
-			<button class="commonBtn" type="primary" @click="handleClick('reLaunch')">reLaunch</button><br/>
-		</view>
+	<view class="container">
+		<!-- <navigation-bar :title=""/> -->
+		<navigator url="/pages/index/face/face" hover-class="navigator-hover">
+			<button type="default">人脸布控</button>
+		</navigator>
+		<navigator url="/pages/index/cars/cars" hover-class="other-navigator-hover">
+			<button type="default">车辆布控</button>
+		</navigator>
+		<navigator url="/pages/index/wifi/wifi" hover-class="other-navigator-hover">
+			<button type="default">wifi布控</button>
+		</navigator>
+		<navigator url="/pages/index/elec/elec" hover-class="other-navigator-hover">
+			<button type="default">电子围栏</button>
+		</navigator>
 	</view>
 </template>
 
@@ -13,47 +20,33 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				href: 'https://uniapp.dcloud.io/component/README?id=uniui',
+				dataTree: [{
+						text: "一年级",
+						value: "1-0",
+					},
+					{
+						text: "二年级",
+						value: "2-0",
+					},
+					{
+						text: "三年级",
+						value: "3-0",
+						disable: true
+					}
+				],
 			}
-		},
-		onLoad() {
-
 		},
 		methods: {
-			handleClick(name){
-				console.log(name)
-				uni[name]({
-					url:"/pages/index/index"
-				})
-			}
+
 		}
 	}
 </script>
 
 <style>
-	.content {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.logo {
-		height: 200rpx;
-		width: 200rpx;
-		margin-top: 200rpx;
-		margin-left: auto;
-		margin-right: auto;
-		margin-bottom: 50rpx;
-	}
-
-	.text-area {
-		display: flex;
-		justify-content: center;
-	}
-
-	.title {
-		font-size: 36rpx;
-		color: #8f8f94;
+	.container {
+		padding: 20px;
+		font-size: 14px;
+		line-height: 24px;
 	}
 </style>
