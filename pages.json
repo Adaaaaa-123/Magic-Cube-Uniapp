@@ -4,7 +4,15 @@
 		"style": {
 			"navigationBarTitleText": "uni-app"
 		}
-	},{
+
+	},
+	{
+		"path": "pages/login/login",
+		"style": {
+			"navigationBarTitleText": "登录"
+		}
+	},
+	{
 		"path": "pages/index/face/face",
 		"style": {
 			"navigationBarTitleText": "人脸布控"
