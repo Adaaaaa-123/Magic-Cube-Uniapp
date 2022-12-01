@@ -1,52 +1,87 @@
-<template>
-	<view class="container">
-		<!-- <navigation-bar :title=""/> -->
-		<navigator url="/pages/index/face/face" hover-class="navigator-hover">
-			<button type="default">人脸布控</button>
-		</navigator>
-		<navigator url="/pages/index/cars/cars" hover-class="other-navigator-hover">
-			<button type="default">车辆布控</button>
-		</navigator>
-		<navigator url="/pages/index/wifi/wifi" hover-class="other-navigator-hover">
-			<button type="default">wifi布控</button>
-		</navigator>
-		<navigator url="/pages/index/elec/elec" hover-class="other-navigator-hover">
-			<button type="default">电子围栏</button>
-		</navigator>
+<template name="home">
+	<view>
+		<scroll-view>
+			<!-- 常用服务 -->
+			<view class="cu-bar bg-white solid-bottom" :style="[{animation: 'show 0.6s 1'}]">
+				<view class="action">
+					<text class='cuIcon-title text-blue'></text>常用服务
+				</view>
+			</view>
+			<view class=" bg-white grid col-3 padding-sm">
+				<view class="padding-sm animation-slide-bottom" :style="[{animationDelay: (index + 1)*0.1 + 's'}]" v-for="(item,index) in usList"
+				 :key="index" @tap="goPage(item.page)">
+					<view class="padding radius text-center shadow-blur solid-right ">
+						<view class="cu-avatar lg " :style="{background: 'url(' + item.icon + ') no-repeat',backgroundSize:'100upx 100upx'}">
+							<view class="cu-tag badge" v-if="getTtemDotInfo(item)">{{getTtemDotInfo(item)}}</view>
+						</view>
+						<view class="text-lg margin-top">{{item.title}}</view>
+					</view>
+				</view>
+			</view>
+
+			<!-- 其他服务 -->
+			<!-- 	<view class="cu-bar bg-white solid-bottom margin-top"  :style="[{animation: 'show 0.6s 1'}]">
+				<view class="action">
+					<text class='cuIcon-title text-yellow'></text>其他服务
+				</view>
+			</view>
+			<view class=" bg-white grid col-3 padding-sm">
+				<view class="padding-sm animation-slide-bottom" :style="[{animationDelay: (index + 1)*0.1 + 's'}]" v-for="(item,index) in osList" :key="index">
+					<view class="padding radius text-center shadow-blur solid-right ">
+						<view class="cu-avatar lg "  :style="{background: 'url(' + item.icon + ') no-repeat',backgroundSize:'100upx 100upx'}"></view>
+						<view class="text-lg margin-top">{{item.title}}</view>
+					</view>
+				</view>
+			</view> -->
+
+			<view class="cu-tabbar-height">
+			</view>
+		</scroll-view>
 	</view>
 </template>
 
 <script>
-	export default {
+	import {
+		us,
+		os
+	} from '../../utils/work.js'
+	export default {     
+		name: 'home',
+		props: {
+			cur: String,
+		},
 		data() {
 			return {
-				href: 'https://uniapp.dcloud.io/component/README?id=uniui',
-				dataTree: [{
-						text: "一年级",
-						value: "1-0",
-					},
-					{
-						text: "二年级",
-						value: "2-0",
-					},
-					{
-						text: "三年级",
-						value: "3-0",
-						disable: true
-					}
-				],
+				usList: us.data,
+				// osList: os.data,
+				dot: {
+					mailHome: false
+				}
 			}
 		},
 		methods: {
+			goPage(page) {
 
+				uni.navigateTo({
+					url: page,
+					success: res => {},
+					fail: () => {},
+					complete: () => {}
+				})
+			},
+			getTtemDotInfo(item) {
+				if (item.page === 'annotationList' && this.msgCount > 0) {
+					return this.msgCount
+				}
+				return '';
+			}
 		}
 	}
 </script>
 
 <style>
-	.container {
-		padding: 20px;
-		font-size: 14px;
-		line-height: 24px;
+	.line2-icon {
+		width: 60px;
+		height: 60px;
 	}
 </style>

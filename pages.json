@@ -1,4 +1,33 @@
 {
+	"tabBar": {
+		"backgroundColor": "#fff",
+		"list": [{
+				"text": "首页",
+				"pagePath": "pages/index/index",
+				"iconPath": "static/icon/home1.png",
+				"selectedIconPath": "static/icon/home.png"
+			},
+			{
+				"text": "告警",
+				"pagePath": "pages/warning/warning",
+				"iconPath": "static/icon/warning1.png",
+				"selectedIconPath": "static/icon/warning.png"
+			},
+			{
+				"text": "视频",
+				"pagePath": "pages/mcu/mcu",
+				"iconPath": "static/icon/video1.png",
+				"selectedIconPath": "static/icon/video.png"
+			},
+			{
+				"text": "个人",
+				"pagePath": "pages/people/people",
+				"iconPath": "static/icon/person1.png",
+				"selectedIconPath": "static/icon/person.png"
+			}
+
+		]
+	},
 	"pages": [{
 		"path": "pages/index/index",
 		"style": {
@@ -32,7 +61,34 @@
 		"style": {
 			"navigationBarTitleText": "电子围栏"
 		}
-	}],
+	}    ,{
+            "path" : "pages/warning/warning",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/mcu/mcu",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        ,{
+            "path" : "pages/people/people",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+    ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
