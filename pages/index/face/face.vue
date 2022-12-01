@@ -19,7 +19,7 @@
 					<uni-data-checkbox v-model="formData.sex" :localdata="sexData" />
 				</uni-forms-item>
 				<uni-forms-item label="出生日期" name="birthday">
-					<uni-datetime-picker type="date" :clear-icon="false" v-model="formData.birthday" />
+					<uni-datetime-picker type="date" :clear-icon="false" v-model="formData.birthday" placeholder="请选择出生日期" />
 				</uni-forms-item>
 				<uni-forms-item label="证件号码" name="IDno">
 					<uni-easyinput v-model="formData.IDno" placeholder="证件号码" />

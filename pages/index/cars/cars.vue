@@ -21,19 +21,19 @@
 						v-model="formData.users">
 					</uni-data-picker> -->
 				</uni-forms-item>
-				<uni-forms-item label="证件号码" name="IDno">
+				<uni-forms-item label="证件号码" required name="IDno">
 					<uni-easyinput v-model="formData.IDno" placeholder="证件号码" />
 				</uni-forms-item>
-				<uni-forms-item label="开始时间" name="beginTime">
+				<uni-forms-item label="开始时间" required name="beginTime">
 					<uni-datetime-picker type="datetime" :clear-icon="false" v-model="formData.beginTime"
 						placeholder="请选择开始时间" @change="(e)=>{changeDate(e,'beginTime')}" />
 				</uni-forms-item>
-				<uni-forms-item label="结束时间" name="endTime">
+				<uni-forms-item label="结束时间" required name="endTime">
 					<uni-datetime-picker type="datetime" :clear-icon="false" v-model="formData.endTime"
 						placeholder="请选择结束时间" @change="(e)=>{changeDate(e,'endTime')}" />
 				</uni-forms-item>
-				<uni-forms-item label="布控原因">
-					<uni-easyinput type="textarea" v-model="formData.introduction" placeholder="请输入布控原因" />
+				<uni-forms-item label="布控原因" required  name="reason">
+					<uni-easyinput type="textarea" v-model="formData.reason" placeholder="请输入布控原因" />
 				</uni-forms-item>
 			</uni-forms>
 		</view>
@@ -58,7 +58,7 @@
 					endTime: "",
 					devices: [],
 					users: [],
-					introduction:""
+					reason:""
 				},
 				//布控等级
 				levelsData: [{
@@ -151,7 +151,7 @@
 							}
 						}]
 					},
-					introduction: {
+					reason: {
 						rules: [{
 							required: true,
 							errorMessage: '请输入布控原因'
@@ -192,17 +192,21 @@
 			},
 			//提交
 			toSubmit(data) {
+				if((this.beginTime)>= (this.endTime)){
+					this.$tip.error("结束时间不能早于开始时间！")
+					return ;
+				};
 				const distributionJson = {
 					// ApplicantName: this.$store.getters.userid,
 					// Ed: this.formData.endDate,
 					Et: this.formData.endTime,
 					PlateNo: this.formData.plateNo, //车牌号
-					Reason: this.formData.introduction,
-					Sd: this.formData.startTime,
+					Reason: this.formData.reason,
+					Sd: this.formData.beginTime,
 					St: this.formData.endTime,
 					Title: this.formData.title,
-					BeginTime: this.begintime.replace("/", "").replace("/", "").replace(":", "").replace(":", ""),
-					EndTime: this.endtime.replace("/", "").replace("/", "").replace(":", "").replace(":", ""),
+					beginTime: this.beginTime.replace("/", "").replace("/", "").replace(":", "").replace(":", ""),
+					endTime: this.endTime.replace("/", "").replace("/", "").replace(":", "").replace(":", ""),
 					"credentials": this.formData.IDno, //证件编码
 					"TollgateList": deviceIds, //设备编号
 					"grade": this.formData.grade,
