@@ -1,0 +1,7 @@
+/deep/ .avatarItem .uni-list-item__content{
+	justify-content: center;
+}
+/deep/ .avatarItem .uni-list-item__container{
+	padding-top: 3px !important;
+	padding-bottom: 3px !important;
+}
