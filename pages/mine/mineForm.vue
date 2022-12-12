@@ -2,27 +2,35 @@
 	<view class="container">
 		<view class="formBlock">
 			<uni-forms class="formBox" ref="valiForm" :rules="rules" :modelValue="formData" label-width="80px">
-				<uni-forms-item label="人脸库" required name="face">
-					<uni-data-picker placeholder="请选择人脸库" popup-title="请选择人脸库" :localdata="faceData"
-						v-model="formData.face">
-					</uni-data-picker>
+				<uni-forms-item label="姓名" required name="realName">
+					<uni-easyinput v-model="formData.realName" placeholder="请输入姓名" />
 				</uni-forms-item>
-				<uni-forms-item label="姓名" required name="name">
-					<uni-easyinput v-model="formData.name" placeholder="请输入姓名" />
+				<uni-forms-item label="用户名" required name="userName">
+					<uni-easyinput v-model="formData.userName" placeholder="请输入用户名" />
 				</uni-forms-item>
-				<uni-forms-item label="人脸照片" required name="photo">
-					<u-upload previewFullImage :fileList="formData.photo" @delete="deletePic" @afterRead="afterRead"
+				<uni-forms-item label="头像" required name="avatar">
+					<u-upload previewFullImage :fileList="formData.avatar" @delete="deletePic" @afterRead="afterRead"
 						:maxCount="1"></u-upload>
 				</uni-forms-item>
-
 				<uni-forms-item class="checkboxItem" label="性别" required name="sex">
 					<uni-data-checkbox v-model="formData.sex" :localdata="sexData" />
 				</uni-forms-item>
-				<uni-forms-item label="出生日期" name="birthday">
-					<uni-datetime-picker type="date" :clear-icon="false" v-model="formData.birthday" placeholder="请选择出生日期" />
+				<uni-forms-item label="生日" name="birthday">
+					<uni-datetime-picker type="date" :clear-icon="false" v-model="formData.birthday" placeholder="请选择生日" />
 				</uni-forms-item>
-				<uni-forms-item label="证件号码" name="IDno">
-					<uni-easyinput v-model="formData.IDno" placeholder="证件号码" />
+				<uni-forms-item label="所在部门" required name="face">
+					<uni-data-picker placeholder="请选择所在部门" popup-title="请选择所在部门" :localdata="faceData"
+						v-model="formData.face">
+					</uni-data-picker>
+				</uni-forms-item>
+				<uni-forms-item label="工号" required name="userName">
+					<uni-easyinput v-model="formData.workNo" placeholder="请输入工号" />
+				</uni-forms-item>
+				<uni-forms-item label="手机号码" name="phone">
+					<uni-easyinput v-model="formData.phone" placeholder="请输入手机号码" />
+				</uni-forms-item>
+				<uni-forms-item label="邮箱" name="email">
+					<uni-easyinput v-model="formData.email" placeholder="请输入邮箱" />
 				</uni-forms-item>
 			</uni-forms>
 		</view>
@@ -53,9 +61,6 @@
 				}, {
 					text: '女',
 					value: 1
-				}, {
-					text: '保密',
-					value: 2
 				}],
 				//人脸库
 				faceData: [],

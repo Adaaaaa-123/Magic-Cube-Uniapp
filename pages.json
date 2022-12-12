@@ -48,7 +48,9 @@
 		}, {
 			"path": "pages/index/cars/cars",
 			"style": {
-				"navigationBarTitleText": "车辆布控"
+				"navigationStyle": "custom" ,// 隐藏系统导航栏
+				"navigationBarTitleText": "车辆布控",
+				"navigationBarTextStyle": "white"
 			}
 		}, {
 			"path": "pages/index/wifi/wifi",
