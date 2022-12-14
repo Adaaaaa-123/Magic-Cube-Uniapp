@@ -55,4 +55,29 @@
 	    font-size: 16px;
 	    letter-spacing: 2px;
 	}
+	/deep/ .u-navbar__content{
+		background-color: unset !important;
+		background: linear-gradient(45deg, #ec008c, #6739b6) !important;
+		
+		.u-navbar__content__left .uicon-arrow-left{
+			color: #fff !important;
+		}
+		
+		.u-navbar__content__title{
+			color: #fff !important;
+		}
+		
+		.u-navbar__content__right .u-navbar__content__right__text{
+			color: #fff !important;
+		}
+	}
+	// /deep/ .u-navbar__content__left .uicon-arrow-left{
+	// 	color: #fff !important;
+	// }
+	// /deep/ .u-navbar__content__title{
+	// 	color: #fff !important;
+	// }
+	// .u-navbar__content__right .u-navbar__content__right__text{
+	// 	color: #fff !important;
+	// }
 </style>

@@ -1,6 +1,7 @@
 <template>
 	<view class="container">
-		<view class="formBlock">
+		<u-navbar title="个人中心" :autoBack="true" rightText="编辑"></u-navbar>
+		<view class="formBlock" style="padding-top: 44px;">
 			<uni-forms class="formBox" ref="valiForm" :rules="rules" :modelValue="formData" label-width="80px">
 				<uni-forms-item label="布控标题" required name="title">
 					<uni-easyinput v-model="formData.title" placeholder="请输入布控标题" />
@@ -32,7 +33,7 @@
 					<uni-datetime-picker type="datetime" :clear-icon="false" v-model="formData.endTime"
 						placeholder="请选择结束时间" @change="(e)=>{changeDate(e,'endTime')}" />
 				</uni-forms-item>
-				<uni-forms-item label="布控原因" required  name="reason">
+				<uni-forms-item label="布控原因" required name="reason">
 					<uni-easyinput type="textarea" v-model="formData.reason" placeholder="请输入布控原因" />
 				</uni-forms-item>
 			</uni-forms>
@@ -48,6 +49,10 @@
 	export default {
 		data() {
 			return {
+				titleStyle:{
+					color:"#fff",
+					background:"linear-gradient(45deg, #ec008c, #6739b6)"
+				},
 				showLevel: false,
 				formData: {
 					title: "",
@@ -58,7 +63,7 @@
 					endTime: "",
 					devices: [],
 					users: [],
-					reason:""
+					reason: ""
 				},
 				//布控等级
 				levelsData: [{
@@ -192,9 +197,9 @@
 			},
 			//提交
 			toSubmit(data) {
-				if((this.beginTime)>= (this.endTime)){
+				if ((this.beginTime) >= (this.endTime)) {
 					this.$tip.error("结束时间不能早于开始时间！")
-					return ;
+					return;
 				};
 				const distributionJson = {
 					// ApplicantName: this.$store.getters.userid,

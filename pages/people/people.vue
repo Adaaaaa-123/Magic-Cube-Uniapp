@@ -56,7 +56,7 @@
 					<uni-icons type="chat" size="35" color="#56b2f0"></uni-icons>
 					<text class="service-text">帮助与客服</text>
 				</view>
-				<view class="service-item">
+				<view class="service-item" @click="toInfo">
 					<uni-icons type="gear" size="35" color="#56b2f0"></uni-icons>
 					<text class="service-text">设置</text>
 				</view>
@@ -73,7 +73,11 @@
 			}
 		},
 		methods: {
-
+			toInfo(){
+				uni.navigateTo({
+					url:"/pages/mine/mineInfo"
+				})
+			}
 		}
 	}
 </script>
