@@ -1,5 +1,6 @@
 <template>
 	<view class="container">
+		<u-navbar title="WIFI布控" :autoBack="true"></u-navbar>
 		<view class="formBlock">
 			<uni-forms class="formBox" ref="valiForm" :rules="rules" :modelValue="formData" label-width="80px">
 				<uni-forms-item label="布控标题" required name="title">
@@ -407,5 +408,6 @@
 	.formBlock {
 		flex: 1;
 		overflow-y: auto;
+		padding-top: 44px;
 	}
 </style>

@@ -71,6 +71,32 @@
 			color: #fff !important;
 		}
 	}
+	
+	.tab-title-box{
+		height: 50px;
+		border-bottom: 1px solid rgba(0,0,0,0.1);
+		
+		.tab-title{
+			height: 49px;
+			font-size: 16px;
+			display: flex;
+			align-items: center;
+			padding: 0 8px;
+		}
+		
+		.tab-title-pt{
+			width: 8px;
+			height: 8px;
+			display: inline-block;
+			border-radius: 100%;
+			background: #2979ff;
+			margin: 0 8px;
+			
+			&.orange{
+				background: orange;
+			}
+		}
+	}
 	// /deep/ .u-navbar__content__left .uicon-arrow-left{
 	// 	color: #fff !important;
 	// }

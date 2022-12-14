@@ -1,5 +1,6 @@
 <template>
 	<view class="container">
+		<u-navbar title="编辑资料" :autoBack="true"></u-navbar>
 		<view class="formBlock">
 			<uni-forms class="formBox" ref="valiForm" :rules="rules" :modelValue="formData" label-width="80px">
 				<uni-forms-item label="姓名" required name="realName">
@@ -263,5 +264,6 @@
 	.formBlock{
 		flex: 1;
 		overflow-y: auto;
+		padding-top: 44px;
 	}
 </style>

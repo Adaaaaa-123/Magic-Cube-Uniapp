@@ -1,162 +1,196 @@
 <template>
-	<view>
-		<view class="content-item">
-			<image src="/static/my-banner.jpg" style="width: 100%;"></image>
-			<view class="user-info">
-				<view>
-					<image src="/static/person.png" style="height: 60px;width: 60px;"></image>
-				</view>
-				<view class="name">
-					<text>你好，游客</text>
-				</view>
-			</view>
-		</view>
-		<view class="content-item">
-			<view class="title">
-				<text>我的订单</text>
-			</view>
-			<view class="content-show">
-				<view class="order-tab">
-					<uni-icons type="bars" size="30" color="#56b2f0"></uni-icons>
-					<text class="order-title">待支付</text>
-				</view>
-				<view class="order-tab">
-					<uni-icons type="loop" size="30" color="#56b2f0"></uni-icons>
-					<text class="order-title">待配送</text>
-				</view>
+	<view class="container">
+		<view class="header">
+			<view class="avatarBox">
 
-				<view class="order-tab">
-					<uni-icons type="reload" size="30" color="#56b2f0"></uni-icons>
-					<text class="order-title">配送中</text>
+			</view>
+			<u-image src="/static/wave.gif" mode="aspectFill" class="wave" width="750rpx" height="100rpx"></u-image>
+			<view class="info">
+				<view class="info-item left">
+					<view class="info-top" style="color:#f37b1d">{{personalInfo.username}}</view>
+					<view class="info-bottom">
+						<text class="iconfont icon-user"></text>用户
+					</view>
 				</view>
-				<view class="order-tab">
-					<uni-icons type="shop" size="30" color="#56b2f0"></uni-icons>
-					<text class="order-title">已完成</text>
-				</view>
-				<view class="order-tab">
-					<uni-icons type="person" size="30" color="#56b2f0"></uni-icons>
-					<text class="order-title">已取消</text>
+				<view class="info-item">
+					<view class="info-top" style="color: #39b54a;">{{personalInfo.post}}</view>
+					<view class="info-bottom">
+						<text class="iconfont icon-api"></text>职务
+					</view>
 				</view>
 			</view>
 		</view>
-		<view class="content-item">
-			<view class="title">
-				<text>我的服务</text>
+		<!-- 列表list-->
+		<u-transition :show="show" mode="slide-up">
+			<view class="list">
+				<u-cell-group>
+					<u-cell icon="setting-fill" :iconStyle="{color:'#39b54a'}" title="设置" isLink
+						url="/pages/mine/mineInfo">
+					</u-cell>
+					<u-cell isLink>
+						<view slot="title" class="u-slot-title">
+							<text class="iconfont icon-logout"
+								style="color:#39b54a;margin-right: 4px;font-size: 18px;"></text>
+							<text class="u-cell-text">退出</text>
+						</view>
+					</u-cell>
+				</u-cell-group>
 			</view>
-			<view class="content-show">
-				<view class="service-item">
-					<uni-icons type="person" size="35" color="#56b2f0"></uni-icons>
-					<text class="service-text">我的资料</text>
-				</view>
-				<view class="service-item">
-					<uni-icons type="location" size="35" color="#56b2f0"></uni-icons>
-					<text class="service-text">收货地址</text>
-				</view>
-				<view class="service-item">
-					<uni-icons type="chat" size="35" color="#56b2f0"></uni-icons>
-					<text class="service-text">帮助与客服</text>
-				</view>
-				<view class="service-item" @click="toInfo">
-					<uni-icons type="gear" size="35" color="#56b2f0"></uni-icons>
-					<text class="service-text">设置</text>
-				</view>
-			</view>
-		</view>
+		</u-transition>
 	</view>
 </template>
 
 <script>
 	export default {
+		name: "people",
 		data() {
 			return {
-
-			}
+				personalInfo: {
+					avatar: '',
+					realname: '',
+					username: '张三',
+					post: '经理'
+				},
+				positionUrl: '/sys/position/list',
+				departUrl: '/sys/user/userDepartList',
+				userUrl: '/sys/user/queryById',
+				userId: '',
+				id: '',
+				show: false
+			};
+		},
+		onShow() {
+			console.log('show')
+			this.show = true
+		},
+		onHide() {
+			console.log('hide')
+			this.show = false
+		},
+		watch: {
+			cur: {
+				immediate: true,
+				handler() {
+					console.log('watch', this.cur)
+					// this.load()
+				},
+			},
 		},
 		methods: {
-			toInfo(){
-				uni.navigateTo({
-					url:"/pages/mine/mineInfo"
-				})
-			}
+			remove() {
+				uni.removeStorageSync('Access-Token')
+			},
+			// load(){
+			// 	this.$http.get(this.userUrl,{params:{id:this.$store.getters.userid}}).then(res=>{
+			// 		console.log("res",res)
+			// 		 if (res.data.success) {
+			// 			let perArr = res.data.result
+			// 	        let avatar=(perArr.avatar && perArr.avatar.length > 0)? api.getFileAccessHttpUrl(perArr.avatar):'/static/avatar_boy.png'
+			// 			this.personalList.avatar =avatar
+			// 			this.personalList.realname = perArr.realname
+			// 			this.personalList.username = perArr.username
+			// 			this.personalList.post = perArr.post
+			// 			this.personalList.depart = perArr.departIds
+			// 		}
+			// 	}).catch(err => {
+			// 		console.log(err);
+			// 	});
+
+			// }		
 		}
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.container {
-		width: 100%;
+		background-color: #f8f8f8;
+		height: 100%;
 	}
 
-	.profile {
-		width: 100%;
+	.header {
+		padding-top: 100rpx;
 	}
 
-	.user-info {
-		position: absolute;
-		top: 100px;
-		left: 30px;
+	.wave {
+		mix-blend-mode: screen;
+	}
+
+	.avatarBox {
+		width: 200rpx;
+		height: 200rpx;
+		margin: 0 auto;
+		border: 2px solid #2979ff;
+		border-radius: 100%;
+	}
+
+	.info {
 		display: flex;
-		align-items: center;
+		background: #fff;
+		box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+		position: relative;
 
+		&-item {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			padding: 30rpx 0;
+			position: relative;
+			z-index: 1;
+			background: #fff;
+			
+			&.left::after{
+				content: "";
+				width: 0px;
+				position: absolute;
+				display: block;
+				border-right: 1px solid rgba(0, 0, 0, 0.1);
+				right: 0;
+				top: 15px;
+				bottom: 15px;
+				margin: auto;
+			}
+		}
+
+		&-top {
+			font-size: 18px;
+		}
+
+		&-bottom {
+			font-size: 14px;
+			margin-top: 10px;
+			color: #8799a3;
+			display: flex;
+			align-items: center;
+		}
+
+		&:before,
+		&:after {
+			position: absolute;
+			content: "";
+			top: 10px;
+			bottom: 15px;
+			left: 10px;
+			width: 50%;
+			box-shadow: 0 15px 10px rgba(0, 0, 0, 0.2);
+			-webkit-transform: rotate(-3deg);
+			transform: rotate(-3deg);
+			z-index: 0;
+		}
+
+		&:after {
+			right: 10px;
+			left: auto;
+			-webkit-transform: rotate(3deg);
+			transform: rotate(3deg);
+		}
 	}
 
-	.user-info .name {
-		display: flex;
-	}
-
-	.content-item {
-		display: flex;
-		margin: 10px;
-		flex-direction: column;
-		border-radius: 4px;
-		background-color: #FFFFFF;
-		justify-content: space-around;
-	}
-
-	.content-item .title {
-		padding: 15px;
-		color: #5A5B5C;
-		font-size: 16px;
-		font-weight: bold;
-	}
-
-	.content-show {
-		display: flex;
-		flex-direction: row;
-		justify-content: space-around;
-		align-items: center;
-	}
-
-	.money-item {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 20px;
-	}
-
-	.service-item {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 20px;
-	}
-
-	.service-item .service-text {
-		font-size: 12px;
-		color: #919293;
-	}
-
-	.order-tab {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		padding: 15px;
-	}
-
-	.order-title {
-		font-size: 14px;
-		padding-top: 10px;
-		color: #919293;
-		padding-bottom: 8px;
+	.list {
+		background: #fff;
+		margin: 40rpx 30rpx;
+		box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+		border-radius: 10px;
 	}
 </style>

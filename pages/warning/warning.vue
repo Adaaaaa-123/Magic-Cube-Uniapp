@@ -1,9 +1,11 @@
 <template>
 	<view>
-		<view class="cu-bar bg-white solid-bottom" :style="[{animation: 'show 0.6s 1'}]">
-			<view class="action">
-				<text class="cuIcon-title text-blue "></text> 告警列表
-			</view>
+		<view class="tab-title-box">
+			<u-transition :show="show" mode="fade-down">
+				<view class="tab-title">
+					<text class="tab-title-pt orange"></text>告警列表
+				</view>
+			</u-transition>
 		</view>
 		<view class="uni-padding-wrap uni-common-mt" :style="[{animation: 'show 0.6s 1'}]">
 			<view class="content">
@@ -31,13 +33,19 @@
 				interfaceUrl: '',
 				login_result: '',
 				nonce: '',
-				vedioUrl: ''
+				vedioUrl: '',
+				show:false
 			}
+		},
+		onShow() {
+			this.show = true
+		},
+		onHide() {
+			this.show = false
 		},
 		onLoad: function() {
 			this.login();
 		},
-		onShow: function() {},
 		methods: {
 			// uni-app中emit触发的方法只能接受一个参数，所以会回传一个对象，打印对象即可见到其中的内容
 			handleNodeClick(obj) {

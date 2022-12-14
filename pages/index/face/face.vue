@@ -1,5 +1,6 @@
 <template>
 	<view class="container">
+		<u-navbar title="人脸布控" :autoBack="true"></u-navbar>
 		<view class="formBlock">
 			<uni-forms class="formBox" ref="valiForm" :rules="rules" :modelValue="formData" label-width="80px">
 				<uni-forms-item label="人脸库" required name="face">
@@ -258,5 +259,6 @@
 	.formBlock{
 		flex: 1;
 		overflow-y: auto;
+		padding-top: 44px;
 	}
 </style>

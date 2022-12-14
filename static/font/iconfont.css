@@ -12,6 +12,10 @@
 	-moz-osx-font-smoothing: grayscale;
 }
 
+.icon-logout:before {
+  content: "\e66a";
+}
+
 .icon-mofang:before {
   content: "\e613";
 }

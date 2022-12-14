@@ -1,24 +1,27 @@
 <template>
 	<view class="container">
-		<uni-list>
-			<uni-list-item title="头像" class="avatarItem">
-				<template v-slot:footer>
-					<u-avatar :src="personalMsg.avatar"></u-avatar>
-				</template>
-			</uni-list-item>
-			<uni-list-item title="姓名" :rightText="personalMsg.realname" />
-			<uni-list-item title="性别" :rightText="personalMsg.sex==2?'男':'女'" />
-			<uni-list-item title="生日" :rightText="personalMsg.birthday" />
-			<uni-list-item title="对外信息展示" :rightText="personalMsg.realname+'@'+personalMsg.orgCode" />
-			<uni-list-item title="所在部门" :rightText="personalMsg.orgCode" />
-			<uni-list-item title="工号" :rightText="personalMsg.workNo" />
-			<uni-list-item title="状态" :rightText="personalMsg.status" />
-			<uni-list-item title="手机" :rightText="personalMsg.phone" />
-			<uni-list-item title="邮箱" :rightText="personalMsg.email" />
-			<uni-list-item title="职务" :rightText="personalMsg.post" />
-			<uni-list-item title="身份" :rightText="personalMsg.identity" />
-			<uni-list-item title="负责部门"  v-if="personalMsg.identity =='上级'" :rightText="personalMsg.departIds" />
-		</uni-list>
+		<u-navbar title="用户详情" :autoBack="true" rightText="编辑" @rightClick="rightClick"></u-navbar>
+		<view style="padding-top: 44px;">
+			<uni-list>
+				<uni-list-item title="头像" class="avatarItem">
+					<template v-slot:footer>
+						<u-avatar :src="personalMsg.avatar"></u-avatar>
+					</template>
+				</uni-list-item>
+				<uni-list-item title="姓名" :rightText="personalMsg.realname" />
+				<uni-list-item title="性别" :rightText="personalMsg.sex==2?'男':'女'" />
+				<uni-list-item title="生日" :rightText="personalMsg.birthday" />
+				<uni-list-item title="对外信息展示" :rightText="personalMsg.realname+'@'+personalMsg.orgCode" />
+				<uni-list-item title="所在部门" :rightText="personalMsg.orgCode" />
+				<uni-list-item title="工号" :rightText="personalMsg.workNo" />
+				<uni-list-item title="状态" :rightText="personalMsg.status" />
+				<uni-list-item title="手机" :rightText="personalMsg.phone" />
+				<uni-list-item title="邮箱" :rightText="personalMsg.email" />
+				<uni-list-item title="职务" :rightText="personalMsg.post" />
+				<uni-list-item title="身份" :rightText="personalMsg.identity" />
+				<uni-list-item title="负责部门"  v-if="personalMsg.identity =='上级'" :rightText="personalMsg.departIds" />
+			</uni-list>
+		</view>
 	</view>
 </template>
 
@@ -118,6 +121,11 @@
 				// }).catch(e=>{
 				// 	console.log("请求错误",e)
 				// })
+			},
+			rightClick(){
+				uni.navigateTo({
+					url:"/pages/mine/mineForm"
+				})
 			}
 		}
 	}
