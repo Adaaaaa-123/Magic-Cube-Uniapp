@@ -1,6 +1,8 @@
 <template name="home">
 	<view>
 		<scroll-view>
+			<button type="primary" @click="scan3">扫码</button>
+
 			<!-- 常用服务 -->
 			<view class="cu-bar bg-white solid-bottom" :style="[{animation: 'show 0.6s 1'}]">
 				<view class="action">
@@ -60,6 +62,16 @@
 			}
 		},
 		methods: {
+			scan3() {
+					uni.scanCode({
+						onlyFromCamera: true,
+						success: function(res) {
+							console.log('条码类型：' + res.scanType);
+							console.log('条码内容：' + res.result);
+						}
+					});
+			  },
+
 			goPage(page) {
 
 				uni.navigateTo({

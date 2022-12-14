@@ -1,5 +1,9 @@
 page {
 	background-color: #FFFFFF !important;
+	height: 100%;
+}
+content{
+	height: 100%;
 }
 
 .logoBox {
